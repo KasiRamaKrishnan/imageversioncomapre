@@ -5,10 +5,6 @@ from datetime import datetime
 
 # datetime object containing current date and time
 now = datetime.now()
- 
-#print("now =", now)
-
-# dd/mm/YY H:M:S
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
 # Making a GET request
@@ -21,22 +17,25 @@ statuscode = r.status_code
 # success code - 200
 my_dict = {"version":"","date":[]}
 
+versionlist = []
 # print content of request
 if statuscode == 200:
   ii = r.content
   byte_str = ii
   alpinejson = byte_str.decode("UTF-8")
   result = json.loads(alpinejson)
-  #print("The last 3 stable verions for the image:",imagename,"are as below..")
+  #print(result)
+  print("The last 2 stable verions for the image:",imagename,"are as below..")
   for i in range(3):
-    version1 = result['results'][1]['name']
-    version2 = result['results'][2]['name']
+    versionlist.append(result['results'][i+1]['name'])
 else:
   print("Give the correct image name..")
 
+name = []
+for i in range(2):
+  con = imagename+str(i)
+  name.append(con)
 
-name = ['alpine1', 'alpine2']
-versionlist = [version1, version2]
 my_information = dict(zip(name, versionlist))
 #print(my_information)
 
