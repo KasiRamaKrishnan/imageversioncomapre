@@ -1,0 +1,10 @@
+{
+    "amazonlinux-images" :[
+        {
+            "name": "amazonlinux",
+            "version": "with-sources",
+            "date": "23/12/2022 22:16:19",
+            "verified": "true" 
+        }
+    ]
+}
